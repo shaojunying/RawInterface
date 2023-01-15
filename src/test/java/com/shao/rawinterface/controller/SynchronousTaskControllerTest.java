@@ -1,6 +1,7 @@
 package com.shao.rawinterface.controller;
 
 import com.shao.rawinterface.RawInterfaceApplication;
+import com.shao.rawinterface.entity.ResponseEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +18,11 @@ class SynchronousTaskControllerTest {
     void testSuccessfulTask() throws InterruptedException {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8081/synchronous-task/run?taskId=1";
-        String response = restTemplate.postForObject(url, null, String.class);
+        ResponseEntity response = restTemplate.postForObject(url, null, ResponseEntity.class);
         assertNotNull(response);
         System.out.println("response = " + response);
-        assertEquals("Success from synchronous task 1", response);
+        assertEquals(200, response.getCode());
+        assertEquals("Success", response.getStatus());
+        assertNull(response.getData());
     }
 }

@@ -1,5 +1,6 @@
 package com.shao.rawinterface.controller;
 
+import com.shao.rawinterface.entity.ResponseEntity;
 import com.shao.rawinterface.service.SynchronousTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,8 +19,7 @@ public class SynchronousTaskController {
     }
 
     @PostMapping(value = "run")
-    public String run(@RequestParam("taskId") int taskId) throws InterruptedException {
-        String response = SynchronousTaskService.run(taskId);
-        return response;
+    public ResponseEntity run(@RequestParam("taskId") int taskId) throws InterruptedException {
+        return SynchronousTaskService.run(taskId);
     }
 }

@@ -19,7 +19,7 @@ public class AsynchronousTaskService {
         return new ResponseEntity(201, "Running", null);
     }
 
-    public ResponseEntity check(int taskId) {
+    public ResponseEntity check(int taskId, boolean shouldSuccess) {
         Timestamp timestamp = taskMap.get(taskId);
         if (timestamp == null) {
             return new ResponseEntity(404, "Not Found", null);
@@ -29,7 +29,11 @@ public class AsynchronousTaskService {
         if (currentTime - taskTime < SECONDS_TO_SLEEP * 1000) {
             return new ResponseEntity(201, "Running", null);
         }
-        return new ResponseEntity(200, "Success", null);
+        if (shouldSuccess) {
+            return new ResponseEntity(200, "Success", null);
+        } else {
+            return new ResponseEntity(500, "Failed", null);
+        }
     }
 
 

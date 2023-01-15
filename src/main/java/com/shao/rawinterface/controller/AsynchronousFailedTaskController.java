@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
-@RequestMapping(value = "asynchronous-task")
-public class AsynchronousTaskController {
+@RequestMapping(value = "asynchronous-failed-task")
+public class AsynchronousFailedTaskController {
     private final AsynchronousTaskService AsynchronousTaskService;
 
     @Autowired
-    public AsynchronousTaskController(AsynchronousTaskService asynchronousTask) {
+    public AsynchronousFailedTaskController(AsynchronousTaskService asynchronousTask) {
         this.AsynchronousTaskService = asynchronousTask;
     }
 
@@ -22,6 +22,6 @@ public class AsynchronousTaskController {
 
     @GetMapping(value = "check")
     public ResponseEntity check(@RequestParam("taskId") int taskId) {
-        return AsynchronousTaskService.check(taskId, true);
+        return AsynchronousTaskService.check(taskId, false);
     }
 }

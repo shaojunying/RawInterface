@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping(value = "synchronous-task")
-public class SynchronousTaskController {
+@RequestMapping(value = "synchronous-failed-task")
+public class SynchronousFailedTaskController {
     private final SynchronousTaskService SynchronousTaskService;
 
     @Autowired
-    public SynchronousTaskController(SynchronousTaskService synchronousTaskService) {
+    public SynchronousFailedTaskController(SynchronousTaskService synchronousTaskService) {
         this.SynchronousTaskService = synchronousTaskService;
     }
 
     @PostMapping(value = "run")
     public ResponseEntity run(@RequestParam("taskId") int taskId) throws InterruptedException {
-        return SynchronousTaskService.run(taskId, true);
+        return SynchronousTaskService.run(taskId, false);
     }
 }

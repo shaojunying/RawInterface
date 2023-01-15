@@ -11,9 +11,13 @@ public class SynchronousTaskService {
 
     private final Random random = new Random();
 
-    public ResponseEntity run(int taskId) throws InterruptedException {
+    public ResponseEntity run(int taskId, boolean shouldSuccess) throws InterruptedException {
         new Task(1000, random.nextInt(5000)).run();
         System.out.println("task " + taskId + " is finished");
-        return new ResponseEntity(200, "Success", null);
+        if (shouldSuccess) {
+            return new ResponseEntity(200, "Success", null);
+        } else {
+            return new ResponseEntity(500, "Failed", null);
+        }
     }
 }

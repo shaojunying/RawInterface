@@ -15,9 +15,9 @@ public class SynchronousTaskService {
         new Task(1000, random.nextInt(5000)).run();
         System.out.println("task " + taskId + " is finished");
         if (shouldSuccess) {
-            return new ResponseEntity(200, "Success", null);
+            return new ResponseEntity(200, "Task " + taskId + " is successfully finished", "{ \"status\": \"Success\" }");
         } else {
-            return new ResponseEntity(500, "Failed", null);
+            return new ResponseEntity(500, "Task " + taskId + " is failed", "{ \"status\": \"Failed\" }");
         }
     }
 }

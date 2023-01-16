@@ -17,7 +17,7 @@ class SynchronousFailedTaskControllerTest {
         assertNotNull(response);
         System.out.println("response = " + response);
         assertEquals(500, response.getCode());
-        assertEquals("Failed", response.getStatus());
-        assertNull(response.getData());
+        assertEquals("Task 1 is failed", response.getMessage());
+        assertEquals("{ \"status\": \"Failed\" }", response.getData());
     }
 }

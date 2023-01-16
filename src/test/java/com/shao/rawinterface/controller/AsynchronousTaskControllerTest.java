@@ -21,8 +21,8 @@ class AsynchronousTaskControllerTest {
         ResponseEntity entity = restTemplate.postForObject(url, null, ResponseEntity.class);
         assertNotNull(entity);
         System.out.println("entity = " + entity);
-        assertEquals(201, entity.getCode());
-        assertEquals("Running", entity.getStatus());
+        assertEquals(200, entity.getCode());
+        assertEquals("Successfully submitted task 1", entity.getMessage());
         assertNull(entity.getData());
 
         Thread.sleep(5000);
@@ -32,8 +32,8 @@ class AsynchronousTaskControllerTest {
         assertNotNull(responseEntity);
         System.out.println("responseEntity = " + responseEntity);
         assertEquals(200, responseEntity.getCode());
-        assertEquals("Success", responseEntity.getStatus());
-        assertNull(responseEntity.getData());
+        assertEquals("Task 1 is successfully finished", responseEntity.getMessage());
+        assertEquals("{ \"status\": \"Success\" }", responseEntity.getData());
 
     }
 }

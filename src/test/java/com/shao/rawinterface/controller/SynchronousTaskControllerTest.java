@@ -22,7 +22,7 @@ class SynchronousTaskControllerTest {
         assertNotNull(response);
         System.out.println("response = " + response);
         assertEquals(200, response.getCode());
-        assertEquals("Success", response.getStatus());
-        assertNull(response.getData());
+        assertEquals("Task 1 is successfully finished", response.getMessage());
+        assertEquals("{ \"status\": \"Success\" }", response.getData());
     }
 }
